@@ -28,7 +28,7 @@ class App extends Component {
         <h1> BookshelV</h1>
         <nav>
 
-          { this.state.books.map(book => <li>{book.url}</li>) }
+          { this.state.books.map(book => <img src={book.url} />) }
           {/* <Link to='/book'>BookshelV</Link> */}
         </nav>
         <main>
