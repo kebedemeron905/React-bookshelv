@@ -25,14 +25,14 @@ class App extends Component {
   render () {
     return (
       <div>
-        <h1> BookshelV</h1>
+        <h1 className='h1'> BookshelV</h1>
         <nav>
-
-          { this.state.books.map(book => <img src={book.url} />) }
           {/* <Link to='/book'>BookshelV</Link> */}
         </nav>
         <main>
-
+          <div className='imgcontainer'>
+            { this.state.books.map(book => <img className='bookimgs'src={book.url} />) }
+          </div>
           {/* <Route path="" render={}/> */}
         </main>
       </div>
