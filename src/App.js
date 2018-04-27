@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-
 import { Route, Link } from 'react-router-dom'
-import Books from './Books.js'
+
 import axios from 'axios'
 import './App.css'
+
+import Books from './Books.js'
+import Addtoshelv from './Addtoshelv'
 
 class App extends Component {
   constructor (props) {
@@ -24,18 +26,27 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className='bookcontainer'>
         <h1 className='h1'> BookshelV</h1>
         <nav>
-          {/* <Link to='/book'>BookshelV</Link> */}
+          <Link to='/login'>Login</Link>
+          <Link to='/signup'>Signup</Link>
+          <Link to='/addtoshelv' />
+
         </nav>
         <main>
+          <button to='/addtoshelv'>Add to Shelv</button>
           <div className='imgcontainer'>
             { this.state.books.map(book => <img className='bookimgs'src={book.url} />) }
           </div>
-          {/* <Route path="" render={}/> */}
+          <Route
+            path='/addtoshelv' render={() => (
+              <Addtoshelv />
+            )}
+          />
         </main>
       </div>
+
     )
   }
 }
