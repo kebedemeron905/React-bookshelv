@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 
 import axios from 'axios'
 import './App.css'
 
-import Books from './Books.js'
+import IndvBook from './IndvBook.js'
 import Addtoshelv from './Addtoshelv'
 
 class App extends Component {
@@ -16,6 +16,7 @@ class App extends Component {
 
     }
   }
+
   componentDidMount () {
     axios.get('http://localhost:4004/')
       .then(response => {
@@ -31,20 +32,27 @@ class App extends Component {
         <nav>
           <Link to='/login'>Login</Link>
           <Link to='/signup'>Signup</Link>
-          <Link to='/addtoshelv' />
+          <Link to='/addtoshelv'>Addtoshelv</Link>
 
         </nav>
         <main>
-          <button to='/addtoshelv'>Add to Shelv</button>
+          {/* <button to='/addtoshelv'>Add to Shelv</button> */}
+          <Addtoshelv />
+          {/* <IndvBook /> */}
           <div className='imgcontainer'>
-            { this.state.books.map(book => <img className='bookimgs'src={book.url} />) }
+            { this.state.books.map(book => book.url && <img className='bookimgs' src={book.url} />) }
           </div>
-          <Route
-            path='/addtoshelv' render={() => (
-              <Addtoshelv />
-            )}
-          />
+
+          <Switch>
+            <Route
+              exact path='/addtoshelv' render={(props) => (
+                <Addtoshelv onChange={this.handleInputChange} />
+              )}
+            />
+
+          </Switch>
         </main>
+
       </div>
 
     )
